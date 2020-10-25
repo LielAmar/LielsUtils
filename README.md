@@ -1,7 +1,7 @@
 # Liel's Utils
 
 Liel's Utils is an API made by Liel Amar to make dealing with Java and Spigot easier.
-This API contains several utilities for: Reflection and Validation, as well as dealing with Spigot Files, Bossbars, Scoreboards, GUIs, Maps and more.
+This API contains several utilities for: Validation, dealing with Spigot Files, Bossbars, Scoreboards, GUIs, Maps and more.
 
 ## Installation
 You can either download the source code, compile and include it as a part of your project, or use Maven with the following:
