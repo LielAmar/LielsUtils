@@ -40,6 +40,16 @@ public class ScoreboardManager {
     }
 
     /**
+     * Injects a player. Sets their scoreboard
+     *
+     * @param player         Player to inject
+     * @param scoreboard     Scoreboard to set
+     */
+    public void injectPlayer(Player player, Scoreboard scoreboard) {
+        this.scoreboards.put(player.getUniqueId(), new CustomScoreboard(player, scoreboard, ChatColor.YELLOW + "" + ChatColor.BOLD + title));
+    }
+
+    /**
      * Ejects a player. Sets their scoreboard to null
      *
      * @param player         Player to eject
@@ -138,6 +148,11 @@ public class ScoreboardManager {
 
         public Scoreboard getScoreboard() {
             return this.scoreboard;
+        }
+
+        public void setScoreboard(Scoreboard scoreboard) {
+            this.scoreboard = scoreboard;
+            this.player.setScoreboard(scoreboard);
         }
 
         /**
