@@ -48,6 +48,10 @@ public class ScoreboardManager {
         if(this.scoreboards.get(player.getUniqueId()) != null) {
             this.scoreboards.get(player.getUniqueId()).destroy();
             this.scoreboards.remove(player.getUniqueId());
+        } else {
+            if(player.getScoreboard() == null) return;
+            for(Team team : player.getScoreboard().getTeams()) team.unregister();
+            for(Objective obj : player.getScoreboard().getObjectives()) obj.unregister();
         }
     }
 
@@ -124,7 +128,7 @@ public class ScoreboardManager {
             if(scoreboard.getObjective(player.getName() + "pg") != null)
                 scoreboard.getObjective(player.getName() + "pg").unregister();
             this.objective = scoreboard.registerNewObjective(player.getName().substring(0,
-                    player.getName().length() > 14 ? 14 : player.getName().length()) + "pg", "dummy");
+                    Math.min(player.getName().length(), 14)) + "pg", "dummy");
             this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
             this.lines = lines.length;
 
@@ -170,7 +174,8 @@ public class ScoreboardManager {
          * @param title        Title to update
          */
         public void updateTitle(String title) {
-            this.objective.setDisplayName(title);
+            if(this.objective != null)
+                this.objective.setDisplayName(title);
 
             display();
         }
@@ -186,9 +191,7 @@ public class ScoreboardManager {
          * Destroys the scoreboard
          */
         public void destroy() {
-            this.player.getScoreboard().getTeams().clear();
-            this.player.getScoreboard().getObjectives().clear();
-            this.player.setScoreboard(null);
+            this.player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).unregister();
 
             this.player = null;
 

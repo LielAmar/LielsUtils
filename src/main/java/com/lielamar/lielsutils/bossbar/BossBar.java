@@ -13,10 +13,14 @@ public class BossBar {
     private static final int DISTANCE = 32;
 
     private Object wither;
-    private Method setLocationMethod, setCustomNameMethod, setInvisibleMethod, setHealthMethod, getIdMethod;
+    private Method setLocationMethod, setCustomNameMethod, setInvisibleMethod, setHealthMethod, getHealthMethod, getIdMethod;
 
     private Class<?> packetPlayOutSpawnEntityLivingClass, packetPlayOutEntityDestroyClass;
     private Constructor<?> packetPlayOutSpawnEntityLivingConstructor, packetPlayOutEntityDestroyConstructor;
+
+    public BossBar(String message, Location loc) {
+        this(message, loc, 1F);
+    }
 
     public BossBar(String message, Location loc, float health) {
         loc = loc.getDirection().multiply(DISTANCE).add(loc.toVector()).toLocation(loc.getWorld());
@@ -40,17 +44,13 @@ public class BossBar {
             this.setInvisibleMethod.invoke(this.wither, true);
 
             this.setHealthMethod = this.wither.getClass().getMethod("setHealth", float.class);
-            this.setHealthMethod.invoke(this.wither, health);
+            this.getHealthMethod = this.wither.getClass().getMethod("getMaxHealth");
+            this.setHealthMethod.invoke(this.wither, health*(float)this.getHealthMethod.invoke(this.wither));
 
             this.getIdMethod = this.wither.getClass().getMethod("getId");
-
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }
-    }
-
-    public BossBar(String message, Location loc) {
-        this(message, loc, 1F);
     }
 
     /**
