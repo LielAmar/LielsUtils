@@ -15,7 +15,7 @@ You can either download the source code, compile and include it as a part of you
         <dependency>
             <groupId>com.lielamar</groupId>
             <artifactId>LielsUtils</artifactId>
-            <version>latest</version>
+            <version>1.1.8</version>
         </dependency>
 ```
 
