@@ -14,6 +14,15 @@ public abstract class Command {
         return this.name;
     }
 
+    public boolean hasPermissions(CommandSender cs) {
+        for(String s : getPermissions()) {
+            if(cs.hasPermission(s))
+                return true;
+        }
+
+        return false;
+    }
+
     public abstract String getDescription();
     public abstract String[] getAliases();
     public abstract String[] getPermissions();

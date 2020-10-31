@@ -19,4 +19,15 @@ public interface Validation {
 
         return violations;
     }
+
+    static List<Validation> validateParameters(Validation... parameters) {
+        List<Validation> violations = new ArrayList<>();
+
+        for(Validation parameter : parameters) {
+            if(!parameter.validate())
+                violations.add(parameter);
+        }
+
+        return violations;
+    }
 }

@@ -16,10 +16,10 @@ public class ScoreboardManager {
 
     private static final List<ChatColor> colors = Arrays.asList(ChatColor.values());
 
-    private Plugin plugin;
+    private final Plugin plugin;
 
-    private String title;
-    private Map<UUID, CustomScoreboard> scoreboards;
+    private final String title;
+    private final Map<UUID, CustomScoreboard> scoreboards;
 
     public ScoreboardManager(Plugin plugin, String title) {
         this.plugin = plugin;
@@ -83,15 +83,14 @@ public class ScoreboardManager {
             int effectIndex = 0;
             @Override
             public void run() {
+                effectIndex++;
+                if(effectIndex > title.length()+7)
+                    effectIndex = 0;
+
                 for(CustomScoreboard scoreboard : scoreboards.values()) {
                     String title = setupTitle(effectIndex);
 
-                    effectIndex++;
-                    if(effectIndex > title.length()+7)
-                        effectIndex = 0;
-
                     scoreboard.updateTitle(title);
-                    scoreboard.display();
                 }
             }
         }.runTaskTimer(plugin, 0L, 3L);
@@ -144,6 +143,7 @@ public class ScoreboardManager {
 
             this.updateTitle(title);
             this.updateLines(lines);
+            this.display();
         }
 
         public Scoreboard getScoreboard() {
@@ -179,8 +179,6 @@ public class ScoreboardManager {
             }
 
             this.lines = lines.length;
-
-            display();
         }
 
         /**
@@ -191,8 +189,6 @@ public class ScoreboardManager {
         public void updateTitle(String title) {
             if(this.objective != null)
                 this.objective.setDisplayName(title);
-
-            display();
         }
 
         /**
@@ -206,6 +202,8 @@ public class ScoreboardManager {
          * Destroys the scoreboard
          */
         public void destroy() {
+            if(this.player == null || this.player.getScoreboard() == null || this.player.getScoreboard().getObjective(DisplaySlot.SIDEBAR) == null) return;
+
             this.player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).unregister();
 
             this.player = null;
@@ -219,7 +217,7 @@ public class ScoreboardManager {
     public static class Line {
 
         private final String team, prefix, entry, suffix;
-        private int lineNumber;
+        private final int lineNumber;
 
         public Line(String team, String prefix, String suffix, int lineNumber) {
             this.team = team;
