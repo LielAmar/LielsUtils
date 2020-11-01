@@ -1,6 +1,6 @@
 # Liel's Utils
 
-[<img alt="spigot" src="https://lielamar.com/other/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
+[<img alt="discord" src="https://lielamar.com/other/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
 
 ## Information
 
