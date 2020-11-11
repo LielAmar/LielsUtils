@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MapManager {
 
-    private Plugin plugin;
+    private final Plugin plugin;
     public MapManager(Plugin plugin) {
         this.plugin = plugin;
     }

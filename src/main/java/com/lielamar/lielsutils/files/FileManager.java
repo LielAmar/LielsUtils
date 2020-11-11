@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class FileManager {
 
-    private Plugin plugin;
-    private Map<String, Config> configs;
+    private final Plugin plugin;
+    private final Map<String, Config> configs;
 
     public FileManager(Plugin plugin) {
         this.plugin = plugin;

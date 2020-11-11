@@ -27,13 +27,6 @@ public class Node<T> {
     public static int amountOfNodes(Node<?> node) {
         if(node == null) return 1;
         return 1+amountOfNodes(node.getNext());
-
-//        int counter = 0;
-//        while(node != null) {
-//            counter++;
-//            node = node.getNext();
-//        }
-//        return counter;
     }
 
     public static Node<?> getLast(@NotNull Node<?> node) {
