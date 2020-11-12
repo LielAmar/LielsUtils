@@ -28,13 +28,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f854ec90-ea8e-4b6d-85a6-aca4a646dcc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Queue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Stack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/SpigotUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/SpigotUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bossbar/BossBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bossbar/BossBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/files/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/files/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/map/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/map/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
