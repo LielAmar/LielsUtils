@@ -28,6 +28,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f854ec90-ea8e-4b6d-85a6-aca4a646dcc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats/MetricsBungee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats/MetricsSpigot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/update/UpdateChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,18 +66,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/scoreboard" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lielamar.lielsutils.update" />
       <recent name="com.lielamar.lielsutils.validation" />
       <recent name="" />
       <recent name="com.lielamar.lielsutils.modules" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Intellij Workspace\Liel's Utils\src\main\java\com\lielamar\lielsutils\bstats" />
       <recent name="D:\Intellij Workspace\Liel's Utils\src\main\java\com\lielamar\lielsutils\scoreboard" />
     </key>
   </component>
@@ -133,26 +141,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605134092043" />
-    <state width="1877" height="170" key="GridCell.Tab.0.bottom" timestamp="1604161051992">
+    <state width="1877" height="170" key="GridCell.Tab.0.bottom" timestamp="1605722481791">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1604161051992" />
-    <state width="1877" height="170" key="GridCell.Tab.0.center" timestamp="1604161051992">
+    <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481791" />
+    <state width="1877" height="170" key="GridCell.Tab.0.center" timestamp="1605722481790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1604161051992" />
-    <state width="1877" height="170" key="GridCell.Tab.0.left" timestamp="1604161051992">
+    <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
+    <state width="1877" height="170" key="GridCell.Tab.0.left" timestamp="1605722481790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551548" />
-    <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1604161051992" />
-    <state width="1877" height="170" key="GridCell.Tab.0.right" timestamp="1604161051992">
+    <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
+    <state width="1877" height="170" key="GridCell.Tab.0.right" timestamp="1605722481790">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1604161051992" />
+    <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
     <state x="551" y="181" key="new project wizard" timestamp="1602853598122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -161,9 +169,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1603008047399" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602855952774">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605721146696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1602855952774" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605721146696" />
   </component>
 </project>
