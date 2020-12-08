@@ -19,7 +19,7 @@ import java.net.URL;
 public class UpdateChecker implements Listener {
 
     private static final String UPDATE_MSG = ChatColor.translateAlternateColorCodes('&',
-            "&b&l&s &rhas an update available on &eSpigot&r!"
+            "&b&l%s &rhas an update available on &eSpigot&r!"
                 + "\n&rYour version, &ev%s, &ris &e%s &rversions behind!");
     private static final String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=";
 

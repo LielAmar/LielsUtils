@@ -1,36 +1,38 @@
 package com.lielamar.lielsutils.validation;
 
+import java.util.function.Predicate;
+
 public class DoubleValidation implements Validation {
 
     private final double value;
     private final String message;
+    private Predicate<Double> predicate;
 
-    private final double min, max;
+    @Deprecated
+    private double min, max;
+
+    @Deprecated
     private boolean hasMin, hasMax;
 
+
     public DoubleValidation(double value) {
-        this(value, "", 0, 0);
-        this.hasMin = this.hasMax = false;
+        this(value, "", null);
     }
 
     public DoubleValidation(double value, String message) {
-        this(value, message, 0, 0);
-        this.hasMin = this.hasMax = false;
+        this(value, message, null);
     }
 
-    public DoubleValidation(double value, String message, int min) {
-        this(value, message, min, 0);
-        this.hasMin = true;
-        this.hasMax = false;
+    public DoubleValidation(double value, Predicate<Double> predicate) {
+        this(value, "", predicate);
     }
 
-    public DoubleValidation(double value, String message, int min, int max) {
+    public DoubleValidation(double value, String message, Predicate<Double> predicate) {
         this.value = value;
         this.message = message;
-        this.min = min;
-        this.max = max;
-        this.hasMin = this.hasMax = true;
+        this.predicate = predicate;
     }
+
 
     @Override
     public Double getValue() {
@@ -44,6 +46,28 @@ public class DoubleValidation implements Validation {
 
     @Override
     public boolean validate() {
+        return this.predicate == null || this.predicate.test(this.value);
+    }
+
+
+    @Deprecated
+    public DoubleValidation(double value, String message, int min) {
+        this(value, message, min, 0);
+        this.hasMin = true;
+        this.hasMax = false;
+    }
+
+    @Deprecated
+    public DoubleValidation(double value, String message, int min, int max) {
+        this.value = value;
+        this.message = message;
+        this.min = min;
+        this.max = max;
+        this.hasMin = this.hasMax = true;
+    }
+
+    @Deprecated
+    public boolean validateModule() {
         if(!this.hasMin && !this.hasMax) return true;
 
         if(this.hasMin && !this.hasMax && this.value >= this.min) return true;

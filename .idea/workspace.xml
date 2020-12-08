@@ -28,13 +28,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f854ec90-ea8e-4b6d-85a6-aca4a646dcc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats/MetricsBungee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats/MetricsSpigot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/update/UpdateChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/update/UpdateChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/update/UpdateChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/CharValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/CharValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/DoubleValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/DoubleValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/IntValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/validation/IntValidation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -66,10 +66,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bstats" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -137,30 +139,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605134125999" />
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1605134092043">
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1607459380251">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605134092043" />
-    <state width="1877" height="170" key="GridCell.Tab.0.bottom" timestamp="1605722481791">
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607459380251" />
+    <state width="1877" height="170" key="GridCell.Tab.0.bottom" timestamp="1605981696866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481791" />
-    <state width="1877" height="170" key="GridCell.Tab.0.center" timestamp="1605722481790">
+    <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605981696866" />
+    <state width="1877" height="170" key="GridCell.Tab.0.center" timestamp="1605981696865">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
-    <state width="1877" height="170" key="GridCell.Tab.0.left" timestamp="1605722481790">
+    <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605981696865" />
+    <state width="1877" height="170" key="GridCell.Tab.0.left" timestamp="1605981696865">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551548" />
-    <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
-    <state width="1877" height="170" key="GridCell.Tab.0.right" timestamp="1605722481790">
+    <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605981696865" />
+    <state width="1877" height="170" key="GridCell.Tab.0.right" timestamp="1605981696866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605722481790" />
+    <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1605981696866" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1607458992938">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607458992938" />
     <state x="551" y="181" key="new project wizard" timestamp="1602853598122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
