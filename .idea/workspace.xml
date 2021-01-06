@@ -30,6 +30,9 @@
     <list default="true" id="f854ec90-ea8e-4b6d-85a6-aca4a646dcc4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/SpigotUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/SpigotUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/modules/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +83,7 @@
       <recent name="D:\Intellij Workspace\Liel's Utils\src\main\java\com\lielamar\lielsutils\scoreboard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ValidationTest">
+  <component name="RunManager" selected="Application.tests">
     <configuration name="ValidationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ValidationTest" />
       <module name="Liel's Utils" />
@@ -97,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ValidationTest" />
         <item itemvalue="Application.tests" />
+        <item itemvalue="Application.ValidationTest" />
       </list>
     </recent_temporary>
   </component>
@@ -138,26 +141,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607459380251" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607873947311">
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1608145228420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607873947311" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607873947311">
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1608145228420" />
+    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1608145228420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607873947311" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607873947311">
+    <state width="1877" height="166" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1608145228420" />
+    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1608145228420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551548" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607873947311" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607873947311">
+    <state width="1877" height="166" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1608145228420" />
+    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1608145228420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="170" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@-1920.0.1920.1160" timestamp="1603749551549" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1607873947311" />
+    <state width="1877" height="166" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1160@0.0.1920.1040" timestamp="1608145228420" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1607458992938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
