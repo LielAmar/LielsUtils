@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.map.MapView;
 
 import javax.annotation.Nonnull;
 import java.io.BufferedReader;
@@ -221,6 +222,26 @@ public class SpigotUtils {
         return uuid.replaceFirst("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5");
     }
 
+
+    /**
+     * Returns the ID of a MapView for versions before 1.13
+     *
+     * @param view   MapView to get the ID of
+     * @return       ID of view
+     */
+    public static short getMapID(MapView view) {
+        try {
+            return (short) view.getId();
+        } catch (NoSuchMethodError e) {
+            try {
+                Class<?> MapView = Class.forName("org.bukkit.map.MapView");
+                Object mapID = MapView.getMethod("getId").invoke(view);
+                return (short) mapID;
+            } catch (Exception e1) {
+                return 1;
+            }
+        }
+    }
 
     /**
      * Returns the server version as an integer representing the major version (1.8, 1.9 etc.)

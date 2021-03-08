@@ -20,7 +20,7 @@ public abstract class Command {
                 return true;
         }
 
-        return false;
+        return getPermissions().length == 0;
     }
 
     public abstract String getDescription();
