@@ -2,6 +2,8 @@ package com.lielamar.lielsutils.commands;
 
 import org.bukkit.command.CommandSender;
 
+import java.util.List;
+
 public abstract class Command {
 
     private final String name;
@@ -28,4 +30,8 @@ public abstract class Command {
     public abstract String[] getPermissions();
 
     public abstract void execute(CommandSender sender, String[] args);
+
+    public List<String> onTabComplete(CommandSender sender, String[] args) {
+        return null;
+    }
 }
