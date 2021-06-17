@@ -1,5 +1,7 @@
 # Liel's Utils
 
+[![Discord](https://img.shields.io/discord/416652224505184276?color=%235865F2&label=Join%20My%20Discord)](https://discord.gg/NzgBrqR)
+
 Liel's Utils is an API made by Liel Amar to make dealing with Java and Spigot easier.
 This API contains several utilities for: Validation, dealing with Spigot Files, Bossbars, Scoreboards, GUIs, Maps and more.
 
@@ -9,7 +11,7 @@ You can either download the source code, compile and include it as a part of you
 ```maven
         <repository>
             <id>lielamar-api</id>
-            <url>https://api.lielamar.com/repository/maven-public/</url>
+            <url>https://repo.lielamar.com/repository/maven-public/</url>
         </repository>
 
         <dependency>
