@@ -53,8 +53,8 @@
     <dependencies>
         <dependency>
             <groupId>com.lielamar</groupId>
-            <artifactId>PacketManager</artifactId>
-            <version>1.0.8</version>
+            <artifactId>packetmanager</artifactId>
+            <version>1.1.2</version>
             <scope>provided</scope>
         </dependency>
 
