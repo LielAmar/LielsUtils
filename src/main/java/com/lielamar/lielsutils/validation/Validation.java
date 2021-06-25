@@ -1,33 +1,27 @@
 package com.lielamar.lielsutils.validation;
 
-import java.util.ArrayList;
+import static com.google.common.base.Predicates.not;
+import static java.util.stream.Collectors.toList;
+
+import java.util.Arrays;
 import java.util.List;
 
-public interface Validation {
+public interface Validation<T> {
 
-    Object getValue();
+    T getValue();
     String getMessage();
     boolean validate();
 
-    static List<Validation> validateParameters(List<Validation> parameters) {
-        List<Validation> violations = new ArrayList<>();
-
-        for(Validation parameter : parameters) {
-            if(!parameter.validate())
-                violations.add(parameter);
-        }
-
-        return violations;
+    static List<Validation<?>> validateParameters(List<Validation<?>> parameters) {
+    	return parameters.stream()
+    			.filter(not(Validation::validate))
+    			.collect(toList());
     }
 
-    static List<Validation> validateParameters(Validation... parameters) {
-        List<Validation> violations = new ArrayList<>();
-
-        for(Validation parameter : parameters) {
-            if(!parameter.validate())
-                violations.add(parameter);
-        }
-
-        return violations;
+    @SafeVarargs
+	static List<Validation<?>> validateParameters(Validation<?>... parameters) {
+    	List<Validation<?>> list = Arrays.asList(parameters);
+    	
+    	return validateParameters(list);
     }
 }
