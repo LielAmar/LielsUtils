@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 import com.lielamar.lielsutils.validation.AbstractValidation;
 
-public abstract class NumericalValidation<N extends Number> extends AbstractValidation<N>
-{
+public abstract class NumericalValidation<N extends Number> extends AbstractValidation<N> {
+
 	@Deprecated
     private double min, max;
 

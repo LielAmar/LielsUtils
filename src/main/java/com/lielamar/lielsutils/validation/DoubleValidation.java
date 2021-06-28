@@ -31,5 +31,4 @@ public class DoubleValidation extends NumericalValidation<Double> {
     public DoubleValidation(double value, String message, int min, int max) {
     	this(value, message);
     }
-
 }

@@ -5,8 +5,9 @@ import java.util.function.Predicate;
 public abstract class AbstractValidation<T> implements Validation<T> {
 	
 	protected final T value;
+
     private final String message;
-    private Predicate<T> predicate;
+    private final Predicate<T> predicate;
     
     protected AbstractValidation(T value) {
         this(value, "", null);
@@ -28,7 +29,7 @@ public abstract class AbstractValidation<T> implements Validation<T> {
     
 	@Override
 	public T getValue() {
-		return this.value;
+        return this.value;
 	}
 
 	@Override
