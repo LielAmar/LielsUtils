@@ -1,6 +1,6 @@
 package com.lielamar.lielsutils.bossbar;
 
-import com.packetmanager.lielamar.PacketManager;
+import com.lielamar.packetmanager.PacketManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 

@@ -30,6 +30,7 @@
     <list default="true" id="f854ec90-ea8e-4b6d-85a6-aca4a646dcc4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bossbar/BossBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lielamar/lielsutils/bossbar/BossBar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +148,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="240" key="GridCell.Tab.0.right/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1623949451205" />
+    <state x="810" y="355" key="Maven.ArtifactSearchDialog" timestamp="1624876670126">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="810" y="355" key="Maven.ArtifactSearchDialog/-1920.191.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1624876670126" />
     <state x="781" y="345" key="SettingsEditor" timestamp="1624875819196">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
