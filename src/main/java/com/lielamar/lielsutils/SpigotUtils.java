@@ -172,7 +172,8 @@ public class SpigotUtils {
             case 5: return DyeColor.LIME;
             case 6: return DyeColor.PINK;
             case 7: return DyeColor.GRAY;
-            case 8: return DyeColor.SILVER;
+//            case 8: return DyeColor.SILVER;
+            case 8: return null;
             case 9: return DyeColor.CYAN;
             case 10: return DyeColor.PURPLE;
             case 11: return DyeColor.BLUE;
