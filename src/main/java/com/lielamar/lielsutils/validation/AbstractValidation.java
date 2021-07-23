@@ -5,9 +5,8 @@ import java.util.function.Predicate;
 public abstract class AbstractValidation<T> implements Validation<T> {
 	
 	protected final T value;
-
     private final String message;
-    private final Predicate<T> predicate;
+    protected final Predicate<T> predicate;
     
     protected AbstractValidation(T value) {
         this(value, "", null);
