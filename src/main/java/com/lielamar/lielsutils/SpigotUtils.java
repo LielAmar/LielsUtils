@@ -12,8 +12,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.map.MapView;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,7 +35,7 @@ public class SpigotUtils {
      * @param enchants     Enchants of the ItemStack
      * @return             ItemStack created through properties
      */
-    public static ItemStack getItem(@Nonnull Material material, int amount, String name, String[] lore, Map<Enchantment, Integer> enchants) {
+    public static ItemStack getItem(@NotNull Material material, int amount, String name, String[] lore, Map<Enchantment, Integer> enchants) {
         ItemStack item = new ItemStack(material, amount);
 
         ItemMeta meta = item.getItemMeta();
@@ -49,7 +49,7 @@ public class SpigotUtils {
         return item;
     }
 
-    public static ItemStack getItem(@Nonnull Material material, int amount, String name, String[] lore, Pair<Enchantment, Integer>... enchants) {
+    public static ItemStack getItem(@NotNull Material material, int amount, String name, String[] lore, Pair<Enchantment, Integer>... enchants) {
         ItemStack item = getItem(material, amount, name, lore, (Map<Enchantment, Integer>) null);
 
         if(enchants == null || enchants.length == 0) return item;
@@ -60,7 +60,7 @@ public class SpigotUtils {
         return item;
     }
 
-    public static ItemStack getItem(@Nonnull Material material, int amount, String name, String[] lore, Enchantment... enchants) {
+    public static ItemStack getItem(@NotNull Material material, int amount, String name, String[] lore, Enchantment... enchants) {
         ItemStack item = getItem(material, amount, name, lore, (Map<Enchantment, Integer>) null);
 
         if(enchants == null || enchants.length == 0) return item;
@@ -71,19 +71,19 @@ public class SpigotUtils {
         return item;
     }
 
-    public static ItemStack getItem(@Nonnull Material material, int amount, String name, String[] lore) {
+    public static ItemStack getItem(@NotNull Material material, int amount, String name, String[] lore) {
         return getItem(material, amount, name, lore, (Map<Enchantment, Integer>) null);
     }
 
-    public static ItemStack getItem(@Nonnull Material material, int amount, String name) {
+    public static ItemStack getItem(@NotNull Material material, int amount, String name) {
         return getItem(material, amount, name, null, (Map<Enchantment, Integer>) null);
     }
 
-    public static ItemStack getItem(@Nonnull Material material, int amount) {
+    public static ItemStack getItem(@NotNull Material material, int amount) {
         return getItem(material, amount, null, null, (Map<Enchantment, Integer>) null);
     }
 
-    public static ItemStack getItem(@Nonnull Material material) {
+    public static ItemStack getItem(@NotNull Material material) {
         return getItem(material, 1, null, null, (Map<Enchantment, Integer>) null);
     }
 
@@ -95,7 +95,7 @@ public class SpigotUtils {
      * @param location       Name of the location
      * @return               Location fetched from Config + Name
      */
-    public static Location fetchLocation(@Nonnull FileConfiguration config, String location) {
+    public static Location fetchLocation(@NotNull FileConfiguration config, String location) {
         return new Location(Bukkit.getWorld(config.getString(location + ".world")),
                 config.getDouble(location + ".x"),
                 config.getDouble(location + ".y"),
@@ -111,7 +111,7 @@ public class SpigotUtils {
      * @param configurationSection  Section to load locations from
      * @return                      List of location fetched from Config
      */
-    public static Location[] fetchLocations(@Nonnull FileConfiguration config, String configurationSection) {
+    public static Location[] fetchLocations(@NotNull FileConfiguration config, String configurationSection) {
         if(config.getConfigurationSection(configurationSection) == null) return new Location[0];
 
         Location[] locations = new Location[config.getConfigurationSection(configurationSection).getKeys(false).size()];

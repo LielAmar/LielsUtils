@@ -1,6 +1,6 @@
 package com.lielamar.lielsutils.modules;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class Node<T> {
 
@@ -29,7 +29,7 @@ public class Node<T> {
         return 1+amountOfNodes(node.getNext());
     }
 
-    public static Node<?> getLast(@Nonnull Node<?> node) {
+    public static Node<?> getLast(@NotNull Node<?> node) {
         while(node.getNext() != null)
             node = node.getNext();
         return node;
