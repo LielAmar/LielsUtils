@@ -1,25 +1,27 @@
-import com.lielamar.lielsutils.validation.CharValidation;
-import com.lielamar.lielsutils.validation.DoubleValidation;
-import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.lielsutils.validation.Validation;
+import static java.util.stream.Collectors.joining;
 
+import java.util.Arrays;
 import java.util.List;
+
+import com.lielamar.lielsutils.validation.Validation;
+import com.lielamar.lielsutils.validation.ValidationFactory;
+import com.lielamar.lielsutils.validation.ValidationUtils;
 
 public class ValidationTest {
 
-    public static void main(String[] args) {
+	private static final List<Validation<Character>> CHARACTER_VALIDATIONS = Arrays.asList(
+			ValidationFactory.ofCharacterRange('C', 'Z')
+			.withErrorMessage("'%s' out of range")
+			.build(),
 
-        List<Validation<?>> violations = Validation.validateParameters(
-                new IntValidation(0, "Radius must be greater than 0", 1),
-                new IntValidation(18, "Secondvar must be greater than/equals to 0 and less than/equals to 15", 0, 15),
-                new DoubleValidation(0.7, "Percentage must be greater than 0", 1),
-                new DoubleValidation(6.123, "PercentageTwo must be greater than 0", 0, 6),
-                new CharValidation('o', "Axis must be either 'x' or 'z'", new Character[] { 'x', 'z' }),
-                new CharValidation('6', "Axis must be either 'x', 'z' or 'Y'", new Character[] { 'x', 'z', 'Y' })
-        );
+			ValidationFactory.ofPossibleCharacters('A', 'B', 'C')
+			.withErrorMessage("'%s' isn't included")
+			.build());
 
-        for(Validation<?> violation : violations) {
-            System.out.println("VIOLATION: " + violation.getMessage());
-        }
-    }
+	public static void main(String[] args) 
+	{
+		String errorMessages = ValidationUtils.buildErrorMessages('a', CHARACTER_VALIDATIONS).collect(joining(" + ", "[", "]"));
+
+		System.out.println("Errors: " + errorMessages);
+	}
 }
