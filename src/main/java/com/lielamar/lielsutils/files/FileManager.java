@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.*;
 
 public class FileManager {
@@ -177,16 +179,12 @@ public class FileManager {
                 String currentLine;
                 boolean foundHeader = false; // Used to track when the header starts & stops
 
-                // Getting the content of the config from the file and setting it in an array of lines
-                BufferedReader reader = new BufferedReader(new FileReader(this.configFile));
-                String[] lines = reader.lines().toArray(String[]::new);
-                reader.close();
-
+                List<String> lines = Files.readAllLines(this.configFile.toPath(), StandardCharsets.UTF_8);
                 StringBuilder configData = new StringBuilder();
 
                 // Looping over the lines to parse the config
-                for(int i = 0; i < lines.length; i++) {
-                    currentLine = lines[i];
+                for(int i = 0; i < lines.size(); i++) {
+                    currentLine = lines.get(i);
 
                     // If the current line is a header separator, we want to set foundHeader to the opposite value
                     // This way, when the foundHeader is true, all comments will go to the header, until we find the next header separator
@@ -205,14 +203,14 @@ public class FileManager {
                         else {
                             // Trying to find the matching key for this comment by looping over all next lines until we find a line that isn't a comment
                             int j = i;
-                            while(j < lines.length && (lines[j].startsWith("#") || lines[j].trim().startsWith("#")))
+                            while(j < lines.size() && (lines.get(j).startsWith("#") || lines.get(j).trim().startsWith("#")))
                                 j++;
 
                             // If we found a key, we want to put the currentLine as a comment for the found key
                             if(j != i) {
                                 // The key contains all spaces before it, for example the key for the path test.hello would be "  hello", because it has 1 parent
                                 // This way, when saving the file, we can easily get the right key without needing the check the parents
-                                String key = lines[j].split(":")[0];
+                                String key = lines.get(j).split(":")[0];
 
                                 // Adding the comment to the list of comments belong to the key
                                 if(comments.containsKey(key))
@@ -232,7 +230,7 @@ public class FileManager {
 
                 // Loading the configData into this.configuration through a reader
                 Reader inputString = new StringReader(configData.toString());
-                reader = new BufferedReader(inputString);
+                BufferedReader reader = new BufferedReader(inputString);
 
                 this.configuration = YamlConfiguration.loadConfiguration(reader);
                 reader.close();
