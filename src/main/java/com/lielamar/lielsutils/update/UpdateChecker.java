@@ -21,7 +21,7 @@ public class UpdateChecker implements Listener {
     private static final String UPDATE_MSG = ChatColor.translateAlternateColorCodes('&',
             "&b&l%s &rhas an update available on &eSpigot&r!"
                 + "\n&rYour version, &ev%s, &ris &e%s &rversions behind!");
-    private static final String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=";
+    private static final String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=%s&t=%s";
 
     private final JavaPlugin plugin;
     private final int resourceId;
@@ -39,7 +39,7 @@ public class UpdateChecker implements Listener {
     public void checkForUpdates() {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                HttpsURLConnection connection = (HttpsURLConnection) new URL(SPIGOT_API + resourceId).openConnection();
+                HttpsURLConnection connection = (HttpsURLConnection) new URL(String.format(SPIGOT_API, resourceId, "-1")).openConnection();
                 connection.setRequestMethod("GET");
                 spigotVersion = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
             } catch (IOException e) {
