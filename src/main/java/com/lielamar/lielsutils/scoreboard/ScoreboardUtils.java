@@ -1,5 +1,6 @@
 package com.lielamar.lielsutils.scoreboard;
 
+import com.lielamar.lielsutils.ColorUtils;
 import com.lielamar.lielsutils.TextUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import org.bukkit.ChatColor;
@@ -43,7 +44,7 @@ public class ScoreboardUtils {
     public static String[] divideStringForScoreboard(String msg) {
         String[] msgParts = new String[] { "               ", "               " };
 
-        msg = TextUtils.unTranslateAlternateColorCodes(msg);
+        msg = ColorUtils.unTranslateAlternateColorCodes(msg);
         if(msg.length() == 0) return msgParts;
 
         if(!msg.contains("&")) msg = "&f" + msg; // Applying a white color if there is no color at all

@@ -9,23 +9,6 @@ import java.util.StringJoiner;
 public class TextUtils {
 
     /**
-     * Removes all colors from the given string and replaces them with &<code>
-     *
-     * @param text          Text to replace
-     * @return              Untranslated String
-     */
-    public static String unTranslateAlternateColorCodes(String text) {
-        char[] array = text.toCharArray();
-        for(int i = 0; i < array.length - 1; i++) {
-            if(array[i] == ChatColor.COLOR_CHAR && "0123456789AaBbCcDdEeFfKkLlMmNnOoRr".indexOf(array[i + 1]) != -1) {
-                array[i] = '&';
-                array[i + 1] = Character.toLowerCase(array[i + 1]);
-            }
-        }
-        return new String(array);
-    }
-
-    /**
      * Returns the current date
      *
      * @return       Current date (String Format)
