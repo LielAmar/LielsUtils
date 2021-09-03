@@ -119,15 +119,22 @@ public class FileManager {
             return;
 
         try {
-            OutputStream out = new FileOutputStream(configFile);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(source, StandardCharsets.UTF_8));
 
-            int length;
-            byte[] buffer = new byte[1024];
+            OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(configFile), StandardCharsets.UTF_8);
 
-            while((length = source.read(buffer)) > 0)
-                out.write(buffer, 0, length);
+//            int length;
+//            byte[] buffer = new byte[1024];
+//
+//            while((length = reader.read(buffer)) > 0)
+//                out.write(new String(buffer), 0, length);
+
+            String line;
+            while((line = reader.readLine()) != null)
+                out.write(line + "\n");
 
             out.close();
+            reader.close();
             source.close();
         } catch(IOException exception) {
             exception.printStackTrace();
@@ -233,6 +240,7 @@ public class FileManager {
                 BufferedReader reader = new BufferedReader(inputString);
 
                 this.configuration = YamlConfiguration.loadConfiguration(reader);
+                inputString.close();
                 reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -377,7 +385,7 @@ public class FileManager {
          */
         private void saveConfig(String configString) {
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(this.configFile));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.configFile), StandardCharsets.UTF_8));
                 writer.write(configString);
                 writer.flush();
                 writer.close();
