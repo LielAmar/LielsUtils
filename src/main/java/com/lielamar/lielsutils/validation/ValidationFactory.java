@@ -4,11 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ValidationFactory
-{
-	//Container of factory methods
-	private ValidationFactory(){}
-	
+public class ValidationFactory {
+
 	public static NumericalRangeBuilder<?> ofNumericalRange() {
 		return new NumericalRangeBuilder<>();
 	}
@@ -29,11 +26,7 @@ public class ValidationFactory
 		return builder;
 	}
 	
-	
-	/* =--=---=
-	 * Builders
-	 * =--=---=
-	 */
+
 	public static abstract class ValidationBuilder<T, B extends ValidationBuilder<T, B>> {
 
 		protected String errorMessage = "";
@@ -81,8 +74,8 @@ public class ValidationFactory
 		}
 	}
 
-	public static class PossibleCharactersBuilder<B extends PossibleCharactersBuilder<B>> extends ValidationBuilder<Character, B>
-	{
+	public static class PossibleCharactersBuilder<B extends PossibleCharactersBuilder<B>> extends ValidationBuilder<Character, B> {
+
 		private final Set<Character> allowedCharacters = new HashSet<>();
 
 		public B withPossibility(char possibility) {
