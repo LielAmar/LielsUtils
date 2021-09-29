@@ -23,7 +23,7 @@ public class ScoreboardUtils {
             String msg = ChatColor.translateAlternateColorCodes('&', sb.get(sb.size()-1-i));
             if(pairs != null) {
                 for(Pair<?, ?> pair : pairs)
-                    msg = msg.replaceAll((pair.getKey() + ""), (pair.getValue() + ""));
+                    msg = msg.replaceAll((pair.getA() + ""), (pair.getB() + ""));
             }
 
             msgParts = ScoreboardUtils.divideStringForScoreboard(msg);
