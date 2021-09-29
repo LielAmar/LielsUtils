@@ -9,17 +9,22 @@ This API contains several utilities for: Validation, dealing with Spigot Files, 
 You can either download the source code, compile and include it as a part of your project, or use Maven with the following:
 
 ```maven
-        <repository>
-            <id>lielamar-api</id>
-            <url>https://repo.lielamar.com/repository/maven-public/</url>
-        </repository>
+<repositories>
+    <repository>
+        <id>lielamar-api</id>
+        <url>https://repo.lielamar.com/repository/maven-public/</url>
+    </repository>
+</repositories>
 
-        <dependency>
-            <groupId>com.lielamar</groupId>
-            <artifactId>LielsUtils</artifactId>
-            <version>1.1.8</version>
-        </dependency>
+<dependencies>
+    <dependency>
+        <groupId>com.lielamar</groupId>
+        <artifactId>LielsUtils</artifactId>
+        <version>1.6</version>
+    </dependency>
 ```
+* Note that some functionalities require you to import & compile [Gson](https://github.com/google/gson) and [PacketManager](https://github.com/LielAmar/PacketManager/)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
