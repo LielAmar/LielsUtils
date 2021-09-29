@@ -8,16 +8,13 @@ import java.util.stream.StreamSupport;
 
 public class ValidationUtils {
 	
-	//Container of static methods
-	private ValidationUtils(){}
-	
 	/**
-	 * Returns the violations(failed validations) out of the provided {@code validations} for the provided {@code object}.
+	 * Returns the violations (failed validations) out of the provided {@code validations} for the provided {@code object}.
 	 * 
-	 * @param <T> The type of the object.
-	 * @param object The object to check against.
+	 * @param <T>         The type of the object.
+	 * @param object      The object to check against.
 	 * @param validations The validations to check.
-	 * @return The violations out of the provided validations.
+	 * @return            The violations out of the provided validations.
 	 */
 	public static <T> List<Validation<T>> getViolationsFor(T object, Iterable<Validation<T>> validations) {
 		return StreamSupport.stream(validations.spliterator(), false)

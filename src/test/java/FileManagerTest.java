@@ -1,4 +1,4 @@
-import com.lielamar.lielsutils.files.FileManager;
+import com.lielamar.lielsutils.bukkit.files.FileManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
