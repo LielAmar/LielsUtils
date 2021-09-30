@@ -5,20 +5,6 @@ import org.bukkit.util.Vector;
 public class DirectionUtils {
 
     /**
-     * Calculates the distances through the X & Z axis using
-     * the distance formula: sqrt((x1-x2)^2 + (z1-z2)^2)
-     *
-     * @param x1        First X coordinate
-     * @param x2        Second X coordinate
-     * @param z1        First Z coordinate
-     * @param z2        Second Z coordinate
-     * @return          Distance
-     */
-    public static double XZDistance(double x1, double x2, double z1, double z2) {
-        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(z1-z2, 2));
-    }
-
-    /**
      * Calculates a yaw from 2 locations
      *
      * @param point1      First location
