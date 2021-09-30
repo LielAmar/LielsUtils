@@ -8,12 +8,28 @@ public class MathUtils {
      *
      * @param x1        First X coordinate
      * @param x2        Second X coordinate
-     * @param y1        First Z coordinate
-     * @param y2        Second Z coordinate
+     * @param z1        First Z coordinate
+     * @param z2        Second Z coordinate
      * @return          Distance
      */
-    public static double Distance2D(double x1, double x2, double y1, double y2) {
-        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+    public static double Distance2D(double x1, double x2, double z1, double z2) {
+        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(z1-z2, 2));
+    }
+
+    /**
+     * Calculates the distance in the X, Y & Z axis using
+     * the distance formula: sqrt((x1-x2)^2 + (y1-y2)^2 + (z1-z2)^2)
+     *
+     * @param x1        First X coordinate
+     * @param x2        Second X coordinate
+     * @param z1        First Z coordinate
+     * @param z2        Second Z coordinate
+     * @param y1        First Y coordinate
+     * @param y2        Second Y coordinate
+     * @return          Distance
+     */
+    public static double Distance3D(double x1, double x2, double y1, double y2, double z1, double z2) {
+        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2) + Math.pow(z1-z2, 2));
     }
 
     /**
