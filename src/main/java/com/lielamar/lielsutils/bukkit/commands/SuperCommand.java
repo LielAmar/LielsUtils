@@ -1,6 +1,7 @@
 package com.lielamar.lielsutils.bukkit.commands;
 
 import com.lielamar.lielsutils.arrays.ArraysUtils;
+import com.lielamar.lielsutils.bukkit.callbacks.CheckPermissionCallback;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,9 +14,8 @@ import java.util.List;
 
 public abstract class SuperCommand extends Command {
 
-    public SuperCommand(@NotNull String name, @Nullable String permission) {
-        super(name, permission);
-    }
+    public SuperCommand(@NotNull String name, @Nullable String permission) { super(name, permission); }
+    public SuperCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
 
 
     public abstract void subCommandNotFoundEvent(@NotNull CommandSender cs);
