@@ -7,11 +7,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public abstract class GuiData {
+public abstract class MenuData {
+
+    /**
+     * Data that belongs to a single Menu
+     */
 
     private final UUID uuid;
 
-    public GuiData(@NotNull Player player) {
+    public MenuData(@NotNull Player player) {
         this.uuid = player.getUniqueId();
     }
 
