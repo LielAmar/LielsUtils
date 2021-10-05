@@ -1,0 +1,66 @@
+package com.lielamar.lielsutils.bukkit.commands;
+
+import com.lielamar.lielsutils.arrays.ArraysUtils;
+import com.lielamar.lielsutils.bukkit.callbacks.CheckPermissionCallback;
+import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public abstract class MasterCommand extends CommandWithSubCommands {
+
+    public MasterCommand(@NotNull String name, @Nullable String permission) { super(name, permission); }
+    public MasterCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
+
+
+    public abstract boolean runMasterCommand(@NotNull CommandSender commandSender, @NotNull String[] args);
+    public abstract List<String> maserTabOptions(@NotNull CommandSender commandSender, @NotNull String[] args);
+
+    @Override
+    public final boolean runCommand(@NotNull CommandSender commandSender, @NotNull String[] args) {
+        // Tries to run the subcommand first, then trying to run the master command if no sub command was ran.
+
+        if(super.hasPermission(commandSender)) {
+            if(args.length != 0) {
+                Command subCommand = this.getSubCommand(args[0]);
+
+                if(subCommand != null) {
+                    if(subCommand.hasPermission(commandSender))
+                        return subCommand.runCommand(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
+                    else {
+                        subCommand.noPermissionEvent(commandSender);
+                        return false;
+                    }
+                }
+            }
+
+            return runMasterCommand(commandSender, args.clone());
+        }
+
+        noPermissionEvent(commandSender);
+        return false;
+    }
+
+    @Override
+    public final List<String> tabOptions(@NotNull CommandSender commandSender, @NotNull String[] args) {
+        List<String> options = new ArrayList<>(this.maserTabOptions(commandSender, args));
+
+        for(Command subCmd : getSubCommands()) {
+            if(subCmd.getPermission() == null || commandSender.hasPermission(subCmd.getPermission())) {
+                if(args.length != 0 && subCmd.getCommandName().toLowerCase().startsWith(args[0].toLowerCase()))
+                    options.add(subCmd.getCommandName());
+
+                if(args.length != 0) {
+                    Arrays.stream(subCmd.getAliases())
+                            .filter(alias -> alias.toLowerCase().startsWith(args[0].toLowerCase()))
+                            .forEach(options::add);
+                }
+            }
+        }
+
+        return options;
+    }
+}

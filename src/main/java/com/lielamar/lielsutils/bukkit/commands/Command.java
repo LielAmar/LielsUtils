@@ -33,10 +33,10 @@ public abstract class Command {
     public abstract @NotNull String[] getAliases();
 
 
-    public @NotNull String getCommandName() { return command; }
-    public @Nullable String getPermission() { return permission; }
+    public final @NotNull String getCommandName() { return command; }
+    public final @Nullable String getPermission() { return permission; }
 
-    public boolean hasPermission(@NotNull CommandSender cs) {
+    public final boolean hasPermission(@NotNull CommandSender cs) {
         if(this.permission == null && this.checkPermissionCallback == null) return false;
 
         if(this.permission != null)

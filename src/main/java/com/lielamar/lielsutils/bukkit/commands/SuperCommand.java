@@ -2,7 +2,6 @@ package com.lielamar.lielsutils.bukkit.commands;
 
 import com.lielamar.lielsutils.arrays.ArraysUtils;
 import com.lielamar.lielsutils.bukkit.callbacks.CheckPermissionCallback;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -12,32 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class SuperCommand extends Command {
+public abstract class SuperCommand extends CommandWithSubCommands {
 
     public SuperCommand(@NotNull String name, @Nullable String permission) { super(name, permission); }
     public SuperCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
 
-
-    public abstract void subCommandNotFoundEvent(@NotNull CommandSender cs);
-    public abstract @NotNull Command[] getSubCommands();
-
-
-    private @Nullable Command getSubCommand(String name) {
-        for(Command subCommand : getSubCommands()) {
-            if(subCommand.getCommandName().equalsIgnoreCase(name))
-                return subCommand;
-
-            if(subCommand.getAliases() != null) {
-                for(String alias : subCommand.getAliases()) {
-                    if(alias.equalsIgnoreCase(name))
-                        return subCommand;
-                }
-            }
-        }
-        return null;
-    }
-
-    public void registerCommand(@NotNull JavaPlugin plugin) {
+    public final void registerCommand(@NotNull JavaPlugin plugin) {
         PluginCommand pluginCommand = plugin.getCommand(command);
 
         if(pluginCommand == null) return;
