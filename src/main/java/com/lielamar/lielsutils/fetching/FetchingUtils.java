@@ -39,4 +39,26 @@ public class FetchingUtils {
             e.printStackTrace();
         }
     }
+
+    public static String fetch(@NotNull String url) throws InvalidResponseException {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setReadTimeout(5000);
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while((inputLine = in.readLine()) != null)
+                response.append(inputLine);
+            in.close();
+
+            if(response.length() == 0)
+                throw new InvalidResponseException("Returned data from the GET request did not include a UUID!");
+
+            return response.toString();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -4,12 +4,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lielamar.lielsutils.callbacks.UUIDCallback;
 import com.lielamar.lielsutils.exceptions.InvalidResponseException;
+import com.lielamar.lielsutils.exceptions.UUIDNotFoundException;
 import com.lielamar.lielsutils.fetching.FetchingUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 public class UUIDUtils {
 
@@ -38,6 +41,29 @@ public class UUIDUtils {
 
             String uuid = res.getOrDefault("id", null);
             callback.run(uuid == null ? null : UUID.fromString(uuid));
+        });
+    }
+
+    /**
+     * Fetches a Minecraft user's UUID from Mojang's API
+     *
+     * @param username   Username of the Minecraft user
+     * @return           A CompletableFuture object of the user's uuid
+     */
+    public static @NotNull CompletableFuture<UUID> fetchUUIDFromMojang(@NotNull String username) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                String response = FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username));
+                Map<String, String> res = new Gson().fromJson(response, gsonType);
+
+                String uuid = res.getOrDefault("id", null);
+                if(uuid == null)
+                    throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
+
+                return UUID.fromString(uuid);
+            } catch (InvalidResponseException exception) {
+                throw new CompletionException(exception);
+            }
         });
     }
 
