@@ -3,6 +3,7 @@ package com.lielamar.lielsutils.fetching;
 import com.lielamar.lielsutils.callbacks.JSONCallback;
 import com.lielamar.lielsutils.exceptions.InvalidResponseException;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class FetchingUtils {
             in.close();
 
             if(response.length() == 0)
-                throw new InvalidResponseException("Returned data from the GET request did not include a UUID!");
+                throw new InvalidResponseException("Returned data from the GET request was empty!");
 
             callback.run(response.toString());
         } catch(IOException e) {
@@ -40,7 +41,7 @@ public class FetchingUtils {
         }
     }
 
-    public static String fetch(@NotNull String url) throws InvalidResponseException {
+    public static @NotNull String fetch(@NotNull String url) throws InvalidResponseException {
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setReadTimeout(5000);
@@ -54,11 +55,11 @@ public class FetchingUtils {
             in.close();
 
             if(response.length() == 0)
-                throw new InvalidResponseException("Returned data from the GET request did not include a UUID!");
+                throw new InvalidResponseException("Returned data from the GET request was empty!");
 
             return response.toString();
-        } catch(IOException e) {
-            e.printStackTrace();
+        } catch(IOException exception) {
+            throw new InvalidResponseException("Fetching " + url + " failed for the following reason: " + exception.toString());
         }
     }
 }
