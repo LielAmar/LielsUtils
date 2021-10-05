@@ -19,6 +19,7 @@ public abstract class MasterCommand extends CommandWithSubCommands {
     public abstract boolean runMasterCommand(@NotNull CommandSender commandSender, @NotNull String[] args);
     public abstract List<String> maserTabOptions(@NotNull CommandSender commandSender, @NotNull String[] args);
 
+
     @Override
     public final boolean runCommand(@NotNull CommandSender commandSender, @NotNull String[] args) {
         // Tries to run the subcommand first, then trying to run the master command if no sub command was ran.
@@ -46,21 +47,24 @@ public abstract class MasterCommand extends CommandWithSubCommands {
 
     @Override
     public final List<String> tabOptions(@NotNull CommandSender commandSender, @NotNull String[] args) {
-        List<String> options = new ArrayList<>(this.maserTabOptions(commandSender, args));
+        if(args.length == 0)
+            return this.maserTabOptions(commandSender, args);
+
+        List<String> options = new ArrayList<>();
 
         for(Command subCmd : getSubCommands()) {
             if(subCmd.getPermission() == null || commandSender.hasPermission(subCmd.getPermission())) {
-                if(args.length != 0 && subCmd.getCommandName().toLowerCase().startsWith(args[0].toLowerCase()))
+                if(subCmd.getCommandName().toLowerCase().startsWith(args[0].toLowerCase()))
                     options.add(subCmd.getCommandName());
 
-                if(args.length != 0) {
-                    Arrays.stream(subCmd.getAliases())
-                            .filter(alias -> alias.toLowerCase().startsWith(args[0].toLowerCase()))
-                            .forEach(options::add);
-                }
+                Arrays.stream(subCmd.getAliases())
+                        .filter(alias -> alias.toLowerCase().startsWith(args[0].toLowerCase()))
+                        .forEach(options::add);
             }
         }
 
         return options;
     }
 }
+
+
