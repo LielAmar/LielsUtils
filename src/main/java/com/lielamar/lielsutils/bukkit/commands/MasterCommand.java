@@ -46,20 +46,29 @@ public abstract class MasterCommand extends CommandWithSubCommands {
     }
 
     @Override
-    public final List<String> tabOptions(@NotNull CommandSender commandSender, @NotNull String[] args) {
-        if(args.length == 0)
-            return this.maserTabOptions(commandSender, args);
-
+    public List<String> tabOptions(@NotNull CommandSender commandSender, @NotNull String[] args) {
         List<String> options = new ArrayList<>();
 
-        for(Command subCmd : getSubCommands()) {
-            if(subCmd.getPermission() == null || commandSender.hasPermission(subCmd.getPermission())) {
-                if(subCmd.getCommandName().toLowerCase().startsWith(args[0].toLowerCase()))
-                    options.add(subCmd.getCommandName());
+        if(super.hasPermission(commandSender)) {
+            if(args.length != 0) {
+                Command subCommand = getSubCommand(args[0]);
 
-                Arrays.stream(subCmd.getAliases())
-                        .filter(alias -> alias.toLowerCase().startsWith(args[0].toLowerCase()))
-                        .forEach(options::add);
+                if(subCommand != null)
+                    return subCommand.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
+            }
+
+            List<String> opt = this.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
+            options.addAll(opt == null ? new ArrayList<>() : opt);
+
+            for(Command subCmd : getSubCommands()) {
+                if(subCmd.getPermission() == null || commandSender.hasPermission(subCmd.getPermission())) {
+                    if(subCmd.getCommandName().toLowerCase().startsWith(args[0].toLowerCase()))
+                        options.add(subCmd.getCommandName());
+
+                    Arrays.stream(subCmd.getAliases())
+                            .filter(alias -> alias.toLowerCase().startsWith(args[0].toLowerCase()))
+                            .forEach(options::add);
+                }
             }
         }
 
