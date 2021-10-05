@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lielamar.lielsutils.callbacks.UUIDCallback;
 import com.lielamar.lielsutils.exceptions.InvalidResponseException;
-import com.lielamar.lielsutils.exceptions.UUIDNotFoundException;
 import com.lielamar.lielsutils.fetching.FetchingUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,15 +36,8 @@ public class UUIDUtils {
         FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username), (response) -> {
             Map<String, String> res = new Gson().fromJson(response, gsonType);
 
-            try {
-                String uuid = res.getOrDefault("id", null);
-                if(uuid == null)
-                    throw new UUIDNotFoundException("UUID with not found for username: " + username);
-
-                callback.run(UUID.fromString(uuid));
-            } catch (UUIDNotFoundException e) {
-                e.printStackTrace();
-            }
+            String uuid = res.getOrDefault("id", null);
+            callback.run(uuid == null ? null : UUID.fromString(uuid));
         });
     }
 
