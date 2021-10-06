@@ -44,6 +44,7 @@ public class FetchingUtils {
     public static @NotNull String fetch(@NotNull String url) throws InvalidResponseException {
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestProperty("Accept", "application/json");
             connection.setReadTimeout(5000);
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

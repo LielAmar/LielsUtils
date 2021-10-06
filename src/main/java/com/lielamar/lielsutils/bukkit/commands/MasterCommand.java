@@ -50,14 +50,15 @@ public abstract class MasterCommand extends CommandWithSubCommands {
         List<String> options = new ArrayList<>();
 
         if(super.hasPermission(commandSender)) {
-            if(args.length != 0) {
-                Command subCommand = getSubCommand(args[0]);
+            if(args.length == 0)
+                return this.maserTabOptions(commandSender, args.clone());
 
-                if(subCommand != null)
-                    return subCommand.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
-            }
+            Command subCommand = getSubCommand(args[0]);
 
-            List<String> opt = this.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
+            if(subCommand != null)
+                return subCommand.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
+
+            List<String> opt = this.maserTabOptions(commandSender, args.clone());
             options.addAll(opt == null ? new ArrayList<>() : opt);
 
             for(Command subCmd : getSubCommands()) {

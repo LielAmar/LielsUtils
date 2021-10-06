@@ -17,7 +17,7 @@ import java.util.concurrent.CompletionException;
 public class UUIDUtils {
 
     public static final long STARTUP_TIMESTAMP = System.currentTimeMillis();
-    private static final Type gsonType = new TypeToken<Map<String, Map<String, String>>>() {}.getType();
+    private static final Type gsonType = new TypeToken<Map<String, String>>() {}.getType();
 
     /**
      * Generates a UUID based on current timestamp & startup time
@@ -54,14 +54,21 @@ public class UUIDUtils {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 String response = FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username));
-                Map<String, String> res = new Gson().fromJson(response, gsonType);
 
-                String uuid = res.getOrDefault("id", null);
-                if(uuid == null)
+                try {
+                    Map<String, String> res = new Gson().fromJson(response, gsonType);
+                    String uuid = res.getOrDefault("id", null);
+                    if(uuid == null) {
+                        throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
+                    }
+
+                    return UUID.fromString(fixUUID(uuid));
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                     throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
-
-                return UUID.fromString(uuid);
+                }
             } catch (InvalidResponseException exception) {
+                exception.printStackTrace();
                 throw new CompletionException(exception);
             }
         });
