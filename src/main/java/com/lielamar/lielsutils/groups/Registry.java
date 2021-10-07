@@ -1,10 +1,10 @@
 package com.lielamar.lielsutils.groups;
 
+import static java.util.stream.Collectors.toSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Registry<T> {
 
@@ -28,9 +28,12 @@ public class Registry<T> {
     }
 
 
-    public Set<String> getExtendsKey(Class<? extends T> clazz) {
-        return data.entrySet().stream().filter(stringTEntry -> clazz.isInstance(stringTEntry.getValue())).map(Map.Entry::getKey).collect(Collectors.toSet());
-    }
+	public Set<String> getExtendsKey(Class<? extends T> clazz) {
+		return data.entrySet().stream()
+				.filter(stringTEntry -> clazz.isInstance(stringTEntry.getValue()))
+				.map(Map.Entry::getKey)
+				.collect(toSet());
+	}
 
     public Set<String> getAllKeys() {
 		return new HashSet<>(data.keySet());
