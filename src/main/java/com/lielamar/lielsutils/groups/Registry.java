@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Registry<T> {
 
-    protected Map<String, T> data;
+	protected final Map<String, T> data;
 
     public Registry() {
         data = new HashMap<>();
