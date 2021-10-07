@@ -1,9 +1,11 @@
 package com.lielamar.lielsutils.groups;
 
 import static java.util.stream.Collectors.toSet;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class Registry<T> {
@@ -15,17 +17,17 @@ public class Registry<T> {
     }
 
 
-    public void register(String key, T item) {
-        data.put(key, item);
-    }
+	public void register(String key, T item) {
+		data.put(key, item);
+	}
 
-    public T get(String key) {
-        return data.get(key);
-    }
+	public Optional<T> get(String key) {
+		return Optional.ofNullable(data.get(key));
+	}
 
-    public T remove(String key) {
-        return data.remove(key);
-    }
+	public Optional<T> remove(String key) {
+		return Optional.ofNullable(data.remove(key));
+	}
 
 
 	public Set<String> getExtendsKey(Class<? extends T> clazz) {
