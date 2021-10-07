@@ -1,6 +1,7 @@
 package com.lielamar.lielsutils.groups;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,6 +33,6 @@ public class Registry<T> {
     }
 
     public Set<String> getAllKeys() {
-        return data.keySet();
-    }
+		return new HashSet<>(data.keySet());
+	}
 }
