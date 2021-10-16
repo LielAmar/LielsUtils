@@ -17,20 +17,28 @@ public final class MenuEventHandler<T extends MenuData> implements Listener {
 
     @org.bukkit.event.EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        System.out.println("a");
         if(event.getClickedInventory() == null)
             return;
+        System.out.println("b");
 
         if(event.getView().getTitle().equals(menu.getName())
                 && event.getClickedInventory().getSize() == menu.getSize()
                 && event.getClickedInventory().getHolder() == event.getWhoClicked()) {
+            System.out.println("c");
 
             int slot = event.getSlot();
+            System.out.println("d");
 
             if(menu.getElements().containsKey(slot)){
+                System.out.println("e");
+
                 event.setCancelled(true);
                 MenuElement<T> element = menu.getElements().get(slot);
+                System.out.println("f");
 
                 element.execute(menu, event);
+                System.out.println("executed element");
             }
         }
     }
