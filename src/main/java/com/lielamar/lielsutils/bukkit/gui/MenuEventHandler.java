@@ -1,8 +1,5 @@
 package com.lielamar.lielsutils.bukkit.gui;
 
-import com.lielamar.lielsutils.bukkit.gui.elements.Button;
-import com.lielamar.lielsutils.bukkit.gui.elements.InputItem;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -33,16 +30,7 @@ public final class MenuEventHandler<T extends MenuData> implements Listener {
                 event.setCancelled(true);
                 MenuElement<T> element = menu.getElements().get(slot);
 
-                if(element instanceof Button){
-                    menu.setData(event.getWhoClicked().getUniqueId(), ((Button<T>)element).click((Player) event.getWhoClicked(), event.getClick(),
-                            menu.data.get(event.getWhoClicked().getUniqueId())));
-
-                    if((event.getWhoClicked()).getOpenInventory().getTitle().equals(menu.getName()))
-                        menu.update(menu.frame, (Player) event.getWhoClicked());
-                } else if(element instanceof InputItem) {
-                    menu.setData(event.getWhoClicked().getUniqueId(), ((InputItem<T>)element).click((Player) event.getWhoClicked(),event.getClick(),
-                            menu.data.get(event.getWhoClicked().getUniqueId()), event.getCursor()));
-                }
+                element.execute(menu, event);
             }
         }
     }

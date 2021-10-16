@@ -1,5 +1,6 @@
 package com.lielamar.lielsutils.bukkit.gui;
 
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,4 +15,7 @@ public interface MenuElement<T extends MenuData> {
      */
 
     @NotNull ItemStack toItemStack(@NotNull T data, int frame);
+
+
+    void execute(Menu<?> menu, InventoryClickEvent event);
 }
