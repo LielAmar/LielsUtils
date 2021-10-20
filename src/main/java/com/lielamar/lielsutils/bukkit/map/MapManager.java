@@ -20,12 +20,8 @@ public class MapManager {
         this.plugin = plugin;
     }
 
-    /**
-     * Saves all current maps
-     *
-     * @return   this {@link MapManager} object
-     */
-    public MapManager saveAllMaps() {
+
+    private List<String> loadMapNamesFromDirectories() {
         List<String> maps = new ArrayList<>();
         List<String> excludedFolders = Arrays.asList("crash-reports", "logs", "logs_backup", "plugins", "world", "world_nether", "world_the_end");
 
@@ -33,6 +29,18 @@ public class MapManager {
             if(file.isDirectory() && !excludedFolders.contains(file.getName()))
                 maps.add(file.getName());
         }
+
+        return maps;
+    }
+
+
+    /**
+     * Saves all current maps
+     *
+     * @return   this {@link MapManager} object
+     */
+    public MapManager saveAllMaps() {
+        List<String> maps = loadMapNamesFromDirectories();
 
         for(String map : maps) {
             this.reloadMap(map);
@@ -46,13 +54,7 @@ public class MapManager {
      * Restores all maps
      */
     public void restoreAllMaps() {
-        List<String> maps = new ArrayList<>();
-        List<String> excludedFolders = Arrays.asList("crash-reports", "logs", "logs_backup", "plugins", "world", "world_nether", "world_the_end");
-
-        for(File file : Bukkit.getServer().getWorldContainer().listFiles()) {
-            if(file.isDirectory() && !excludedFolders.contains(file.getName()))
-                maps.add(file.getName());
-        }
+        List<String> maps = loadMapNamesFromDirectories();
 
         for(String map : maps) {
             this.unloadMap(Bukkit.getWorld(map));
