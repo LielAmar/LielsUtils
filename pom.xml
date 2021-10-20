@@ -6,7 +6,7 @@
 
     <groupId>com.lielamar</groupId>
     <artifactId>LielsUtils</artifactId>
-    <version>1.6.16</version>
+    <version>1.6.17</version>
 
     <name>Liel's Utils</name>
     <url>https://lielamar.com</url>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.lielamar.ConnectionsManager</groupId>
             <artifactId>common</artifactId>
-            <version>1.0.6</version>
+            <version>1.0.7</version>
             <scope>compile</scope>
         </dependency>
 
