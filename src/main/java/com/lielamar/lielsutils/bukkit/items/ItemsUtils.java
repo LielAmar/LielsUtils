@@ -1,7 +1,6 @@
 package com.lielamar.lielsutils.bukkit.items;
 
 import com.lielamar.lielsutils.bukkit.color.ColorUtils;
-import com.lielamar.lielsutils.bukkit.nbt.ItemTag;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -18,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class ItemUtils {
+public class ItemsUtils {
 
     public static class Builder {
 

@@ -1,4 +1,4 @@
-package com.lielamar.lielsutils.bukkit.nbt;
+package com.lielamar.lielsutils.bukkit.items;
 
 import com.lielamar.connections.serializable.Serializable;
 import com.lielamar.connections.serializable.SerializableDocument;
