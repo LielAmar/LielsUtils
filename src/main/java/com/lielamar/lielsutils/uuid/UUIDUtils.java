@@ -11,11 +11,13 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 public class UUIDUtils {
 
     public static final long STARTUP_TIMESTAMP = System.currentTimeMillis();
-    private static final Type gsonType = new TypeToken<Map<String, Map<String, String>>>() {}.getType();
+    private static final Type gsonType = new TypeToken<Map<String, String>>() {}.getType();
 
     /**
      * Generates a UUID based on current timestamp & startup time
@@ -37,14 +39,37 @@ public class UUIDUtils {
         FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username), (response) -> {
             Map<String, String> res = new Gson().fromJson(response, gsonType);
 
-            try {
-                String uuid = res.getOrDefault("id", null);
-                if(uuid == null)
-                    throw new UUIDNotFoundException("UUID with not found for username: " + username);
+            String uuid = res.getOrDefault("id", null);
+            callback.run(uuid == null ? null : UUID.fromString(uuid));
+        });
+    }
 
-                callback.run(UUID.fromString(uuid));
-            } catch (UUIDNotFoundException e) {
-                e.printStackTrace();
+    /**
+     * Fetches a Minecraft user's UUID from Mojang's API
+     *
+     * @param username   Username of the Minecraft user
+     * @return           A CompletableFuture object of the user's uuid
+     */
+    public static @NotNull CompletableFuture<UUID> fetchUUIDFromMojang(@NotNull String username) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                String response = FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username));
+
+                try {
+                    Map<String, String> res = new Gson().fromJson(response, gsonType);
+                    String uuid = res.getOrDefault("id", null);
+                    if(uuid == null) {
+                        throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
+                    }
+
+                    return UUID.fromString(fixUUID(uuid));
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
+                }
+            } catch (InvalidResponseException exception) {
+                exception.printStackTrace();
+                throw new CompletionException(exception);
             }
         });
     }

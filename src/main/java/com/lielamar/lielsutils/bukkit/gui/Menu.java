@@ -10,14 +10,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class Menu<T extends GuiData> {
+public abstract class Menu<T extends MenuData> {
+
+    /**
+     * Menu is a single Inventory Type that can be loaded and rendered for a player
+     */
 
     private final @NotNull String name;
     private final int size;
     private final boolean needUpdates;
     private final long ticksBetweenUpdates;
 
-    protected Map<Integer, UIElement<T>> elements = new HashMap<>();
+    protected Map<Integer, MenuElement<T>> elements = new HashMap<>();
     protected HashMap<UUID, T> data;
 
     public int frame;
@@ -41,7 +45,7 @@ public abstract class Menu<T extends GuiData> {
     public int getSize() {
         return size;
     }
-    public Map<Integer, UIElement<T>> getElements() {
+    public Map<Integer, MenuElement<T>> getElements() {
         return elements;
     }
 
@@ -51,7 +55,7 @@ public abstract class Menu<T extends GuiData> {
         return y * 9 + x;
     }
 
-    protected void fill(int startX, int startY, int endX, int endY, UIElement<T> uiElement) {
+    protected void fill(int startX, int startY, int endX, int endY, MenuElement<T> uiElement) {
         for(int x = startX; x < endX; x++) {
             for(int y = startY; y < endY; y++)
                 elements.put(findIdFromPos(x,y), uiElement);
@@ -67,7 +71,7 @@ public abstract class Menu<T extends GuiData> {
         data.put(player.getUniqueId(), getData(player));
         load(data.get(player.getUniqueId()));
 
-        for(Map.Entry<Integer, UIElement<T>> entry : elements.entrySet()) {
+        for(Map.Entry<Integer, MenuElement<T>> entry : elements.entrySet()) {
             if(entry.getValue() != null)
                 inv.setItem(entry.getKey(), entry.getValue().toItemStack(data.get(player.getUniqueId()), 0));
         }
@@ -78,7 +82,7 @@ public abstract class Menu<T extends GuiData> {
     public void update(int frame, Player player) {
         load(data.get(player.getUniqueId()));
 
-        for(Map.Entry<Integer, UIElement<T>> entry : elements.entrySet()) {
+        for(Map.Entry<Integer, MenuElement<T>> entry : elements.entrySet()) {
             if(entry.getValue() != null)
                 player.getOpenInventory().getTopInventory().setItem(entry.getKey(), entry.getValue().toItemStack(data.get(player.getUniqueId()), frame));
         }
@@ -86,7 +90,7 @@ public abstract class Menu<T extends GuiData> {
 
 
     public void register(@NotNull JavaPlugin plugin) {
-        Bukkit.getPluginManager().registerEvents(new EventHandler<>(this), plugin);
+        Bukkit.getPluginManager().registerEvents(new MenuEventHandler<>(this), plugin);
 
         if(needUpdates) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> {

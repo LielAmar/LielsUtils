@@ -1,5 +1,6 @@
 package com.lielamar.lielsutils.bukkit.commands;
 
+import com.lielamar.lielsutils.bukkit.callbacks.CheckPermissionCallback;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -9,11 +10,17 @@ import java.util.List;
 public abstract class Command {
 
     protected String command;
-    protected String permission;
+    protected @Nullable String permission;
+    protected @Nullable CheckPermissionCallback checkPermissionCallback;
 
     public Command(@NotNull String command, @Nullable String permission) {
         this.command = command;
         this.permission = permission;
+    }
+
+    public Command(@NotNull String command, @Nullable CheckPermissionCallback checkPermissionCallback) {
+        this.command = command;
+        this.checkPermissionCallback = checkPermissionCallback;
     }
 
 
@@ -26,11 +33,15 @@ public abstract class Command {
     public abstract @NotNull String[] getAliases();
 
 
-    public @NotNull String getCommandName() { return command; }
-    public @Nullable String getPermission() { return permission; }
-    public boolean hasPermission(@NotNull CommandSender cs) {
-        if(this.permission == null) return false;
+    public final @NotNull String getCommandName() { return command; }
+    public final @Nullable String getPermission() { return permission; }
 
-        return cs.hasPermission(this.permission);
+    public final boolean hasPermission(@NotNull CommandSender cs) {
+        if(this.permission == null && this.checkPermissionCallback == null) return false;
+
+        if(this.permission != null)
+            return cs.hasPermission(this.permission);
+
+        return this.checkPermissionCallback.hasPermission(cs);
     }
 }
