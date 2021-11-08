@@ -73,6 +73,9 @@ public abstract class SuperCommand extends CommandWithSubCommands {
                             subCommand.noPermissionEvent(commandSender);
                             return false;
                         }
+                    } else {
+                        subCommandNotFoundEvent(commandSender);
+                        return false;
                     }
                 }
 

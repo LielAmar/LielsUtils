@@ -16,8 +16,8 @@ public abstract class MasterCommand extends CommandWithSubCommands {
     public MasterCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
 
 
-    public abstract boolean runMasterCommand(@NotNull CommandSender commandSender, @NotNull String[] args);
-    public abstract List<String> maserTabOptions(@NotNull CommandSender commandSender, @NotNull String[] args);
+    public abstract boolean runMasterCommand(@NotNull CommandSender cs, @NotNull String[] args);
+    public abstract List<String> masterTabOptions(@NotNull CommandSender cs, @NotNull String[] args);
 
 
     @Override
@@ -35,6 +35,9 @@ public abstract class MasterCommand extends CommandWithSubCommands {
                         subCommand.noPermissionEvent(commandSender);
                         return false;
                     }
+                } else {
+                    subCommandNotFoundEvent(commandSender);
+                    return false;
                 }
             }
 
@@ -51,14 +54,14 @@ public abstract class MasterCommand extends CommandWithSubCommands {
 
         if(super.hasPermission(commandSender)) {
             if(args.length == 0)
-                return this.maserTabOptions(commandSender, args.clone());
+                return this.masterTabOptions(commandSender, args.clone());
 
             Command subCommand = getSubCommand(args[0]);
 
             if(subCommand != null)
                 return subCommand.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
 
-            List<String> opt = this.maserTabOptions(commandSender, args.clone());
+            List<String> opt = this.masterTabOptions(commandSender, args.clone());
             options.addAll(opt == null ? new ArrayList<>() : opt);
 
             for(Command subCmd : getSubCommands()) {
