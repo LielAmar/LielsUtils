@@ -27,8 +27,9 @@ import java.lang.reflect.Field;
 public class BiomeUtils {
     private DedicatedServer dedicatedserver;
     private BiomeBase.a newBiome;
+    private BiomeFog.a newFog;
 
-    public void createBiome(String group, String name, String copiedGroup, String copiedName) throws NoSuchFieldException, IllegalAccessException {
+    public void createNewBiome(String group, String name, String copiedGroup, String copiedName) throws NoSuchFieldException, IllegalAccessException {
         Server server = Bukkit.getServer();
         CraftServer craftserver = (CraftServer)server;
         dedicatedserver = craftserver.getServer();
@@ -53,19 +54,21 @@ public class BiomeUtils {
         newBiome.a(biomeSettingGen);
     }
 
-    public void setBiomeSettings(float depth, float scale, float temperature, float downfall, BiomeBase.TemperatureModifier modifier) {
+    public BiomeBase.a makeBiomeSettings(float depth, float scale, float temperature, float downfall, BiomeBase.TemperatureModifier modifier) {
+        newBiome = new BiomeBase.a();
         newBiome.a(depth); //Depth of biome
         newBiome.b(scale); //Scale of biome
         newBiome.c(temperature); //Temperature of biome
         newBiome.d(downfall); //Downfall of biome
         newBiome.a(modifier); //BiomeBase.TemperatureModifier.a will make your biome normal, BiomeBase.TemperatureModifier.b will make your biome frozen
+        return newBiome;
     }
 
     public void setBiomeFog(BiomeFog.GrassColor grassColor, String[] colors) {
         if (colors.length > 6) {
             return;
         }
-        BiomeFog.a newFog = new BiomeFog.a();
+        newFog = new BiomeFog.a();
         newFog.a(grassColor); //This doesn't affect the actual final grass color, just leave this line as it is or you will get errors
 
         newFog.a(Integer.parseInt(colors[0],16)); //fogcolor
