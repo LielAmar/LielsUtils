@@ -18,9 +18,6 @@ public abstract class MasterCommand extends CommandWithSubCommands {
 
     public abstract boolean runMasterCommand(@NotNull CommandSender cs, @NotNull String[] args);
     public abstract List<String> masterTabOptions(@NotNull CommandSender cs, @NotNull String[] args);
-    public abstract boolean runMasterCommand(@NotNull CommandSender commandSender, @NotNull String[] args);
-    public abstract List<String> maserTabOptions(@NotNull CommandSender commandSender, @NotNull String[] args);
-
 
     @Override
     public final boolean runCommand(@NotNull CommandSender commandSender, @NotNull String[] args) {
@@ -57,7 +54,6 @@ public abstract class MasterCommand extends CommandWithSubCommands {
         if(super.hasPermission(commandSender)) {
             if(args.length == 0)
                 return this.masterTabOptions(commandSender, args.clone());
-                return this.maserTabOptions(commandSender, args.clone());
 
             Command subCommand = getSubCommand(args[0]);
 
@@ -65,7 +61,6 @@ public abstract class MasterCommand extends CommandWithSubCommands {
                 return subCommand.tabOptions(commandSender, (getSubCommands().length > 0 ? ArraysUtils.removeFirstElement(args.clone()) : args.clone()));
 
             List<String> opt = this.masterTabOptions(commandSender, args.clone());
-            List<String> opt = this.maserTabOptions(commandSender, args.clone());
             options.addAll(opt == null ? new ArrayList<>() : opt);
 
             for(Command subCmd : getSubCommands()) {
