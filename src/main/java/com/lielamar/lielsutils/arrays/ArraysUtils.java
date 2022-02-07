@@ -5,11 +5,12 @@ import org.jetbrains.annotations.NotNull;
 public class ArraysUtils {
 
     public static String[] removeFirstElement(@NotNull String[] arguments) {
+        if(arguments.length <= 1)
+            return new String[0];
+
         String[] placeholder = new String[arguments.length - 1];
 
-        if(placeholder.length >= 0)
-            System.arraycopy(arguments, 1, placeholder, 0, placeholder.length);
-
+        System.arraycopy(arguments, 1, placeholder, 0, arguments.length);
         return placeholder;
     }
 }

@@ -20,25 +20,7 @@ public class FetchingUtils {
      * @param callback   Callback to call when a response is received
      */
     public static void fetch(@NotNull String url, @NotNull JSONCallback callback) throws InvalidResponseException {
-        try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-            connection.setReadTimeout(5000);
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while((inputLine = in.readLine()) != null)
-                response.append(inputLine);
-            in.close();
-
-            if(response.length() == 0)
-                throw new InvalidResponseException("Returned data from the GET request was empty!");
-
-            callback.run(response.toString());
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        callback.run(fetch(url));
     }
 
     public static @NotNull String fetch(@NotNull String url) throws InvalidResponseException {
