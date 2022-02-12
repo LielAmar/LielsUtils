@@ -6,6 +6,8 @@ import com.lielamar.lielsutils.callbacks.UUIDCallback;
 import com.lielamar.lielsutils.exceptions.InvalidResponseException;
 import com.lielamar.lielsutils.exceptions.UUIDNotFoundException;
 import com.lielamar.lielsutils.fetching.FetchingUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -36,12 +38,18 @@ public class UUIDUtils {
      * @throws InvalidResponseException   Throws an exception if the given response was invalid
      */
     public static void fetchUUIDFromMojang(@NotNull String username, @NotNull UUIDCallback callback) throws InvalidResponseException {
-        FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username), (response) -> {
-            Map<String, String> res = new Gson().fromJson(response, gsonType);
+        OfflinePlayer offlinePlayer = Bukkit.getPlayer(username);
 
-            String uuid = res.getOrDefault("id", null);
-            callback.run(uuid == null ? null : UUID.fromString(uuid));
-        });
+        if(offlinePlayer != null)
+            callback.run(offlinePlayer.getUniqueId());
+        else {
+            FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username), (response) -> {
+                Map<String, String> res = new Gson().fromJson(response, gsonType);
+
+                String uuid = res.getOrDefault("id", null);
+                callback.run(uuid == null ? null : UUID.fromString(uuid));
+            });
+        }
     }
 
     /**
@@ -51,6 +59,11 @@ public class UUIDUtils {
      * @return           A CompletableFuture object of the user's uuid
      */
     public static @NotNull CompletableFuture<UUID> fetchUUIDFromMojang(@NotNull String username) {
+        OfflinePlayer offlinePlayer = Bukkit.getPlayer(username);
+
+        if(offlinePlayer != null)
+            return CompletableFuture.supplyAsync(offlinePlayer::getUniqueId);
+
         return CompletableFuture.supplyAsync(() -> {
             try {
                 String response = FetchingUtils.fetch(String.format("https://api.mojang.com/users/profiles/minecraft/%s", username));
@@ -64,7 +77,6 @@ public class UUIDUtils {
 
                     return UUID.fromString(fixUUID(uuid));
                 } catch (Exception exception) {
-                    exception.printStackTrace();
                     throw new CompletionException(new UUIDNotFoundException("UUID for username " + username + " was not found!"));
                 }
             } catch (InvalidResponseException exception) {
