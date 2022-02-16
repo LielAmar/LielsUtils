@@ -3,6 +3,9 @@ package com.lielamar.lielsutils.bukkit.color;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.DyeColor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.awt.*;
 
 public class ColorUtils {
 
@@ -76,31 +79,23 @@ public class ColorUtils {
      *
      * @return   Closest color to the given rgb
      */
-    public static DyeColor getClosestColor(int red, int green, int blue) {
-        DyeColor closest = null;
+    public static org.bukkit.ChatColor getClosestColor(int red, int green, int blue) {
+        org.bukkit.ChatColor closest = null;
 
-        for(DyeColor dyeColor : DyeColor.values()) {
-            if(closest == null)
-                closest = dyeColor;
-            else if(distance(red, green, blue, dyeColor) < distance(red, green, blue, closest))
-                closest = dyeColor;
+        for(org.bukkit.ChatColor chatColor : org.bukkit.ChatColor.values()) {
+            if(chatColor.isColor()) {
+                if(closest == null)
+                    closest = chatColor;
+                else if(distance(red, green, blue, chatColor) < distance(red, green, blue, closest))
+                    closest = chatColor;
+            }
         }
 
         return closest;
     }
 
-    /**
-     * Converts a dye color to a chat color
-     *
-     * @param dyeColor   Dye color to convert
-     * @return           Converted dye color as chat color
-     */
-    public static org.bukkit.ChatColor dyeToColor(DyeColor dyeColor) {
-        return org.bukkit.ChatColor.valueOf(dyeColor.name());
-    }
-
-    private static int distance(int red, int green, int blue, @NotNull DyeColor dyeColor) {
-        org.bukkit.Color color = dyeColor.getColor();
+    private static int distance(int red, int green, int blue, @NotNull org.bukkit.ChatColor chatColor) {
+        Color color = chatColor.asBungee().getColor();
 
         return Math.abs(color.getRed() - red)
                 + Math.abs(color.getGreen() - green)
