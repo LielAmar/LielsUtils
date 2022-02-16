@@ -2,6 +2,7 @@ package com.lielamar.lielsutils.bukkit.color;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.DyeColor;
+import org.jetbrains.annotations.NotNull;
 
 public class ColorUtils {
 
@@ -40,8 +41,8 @@ public class ColorUtils {
     /**
      * Removes all colors from the given string and replaces them with &<code>
      *
-     * @param text          Text to replace
-     * @return              Untranslated String
+     * @param text   Text to replace
+     * @return       Untranslated String
      */
     public static String unTranslateAlternateColorCodes(String text) {
         char[] array = text.toCharArray();
@@ -52,6 +53,58 @@ public class ColorUtils {
             }
         }
         return new String(array);
+    }
+
+    /**
+     * Returns the last color used in an untranslated message
+     *
+     * @param untranslatedColor   Untranslated message
+     * @return                    Last color
+     */
+    public static String getLastColor(String untranslatedColor) {
+        String[] coloredSections = untranslatedColor.split("&");
+        String lastColor = coloredSections[coloredSections.length - 1];
+
+        if(lastColor.startsWith("#"))
+            return lastColor.substring(0, 7);
+
+        return lastColor.charAt(0) + "";
+    }
+
+    /**
+     * Calculates the closest color to the given rgb
+     *
+     * @return   Closest color to the given rgb
+     */
+    public static DyeColor getClosestColor(int red, int green, int blue) {
+        DyeColor closest = null;
+
+        for(DyeColor dyeColor : DyeColor.values()) {
+            if(closest == null)
+                closest = dyeColor;
+            else if(distance(red, green, blue, dyeColor) < distance(red, green, blue, closest))
+                closest = dyeColor;
+        }
+
+        return closest;
+    }
+
+    /**
+     * Converts a dye color to a chat color
+     *
+     * @param dyeColor   Dye color to convert
+     * @return           Converted dye color as chat color
+     */
+    public static org.bukkit.ChatColor dyeToColor(DyeColor dyeColor) {
+        return org.bukkit.ChatColor.valueOf(dyeColor.name());
+    }
+
+    private static int distance(int red, int green, int blue, @NotNull DyeColor dyeColor) {
+        org.bukkit.Color color = dyeColor.getColor();
+
+        return Math.abs(color.getRed() - red)
+                + Math.abs(color.getGreen() - green)
+                + Math.abs(color.getBlue() - blue);
     }
 
 
