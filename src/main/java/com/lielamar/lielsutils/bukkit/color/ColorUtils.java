@@ -3,7 +3,6 @@ package com.lielamar.lielsutils.bukkit.color;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.DyeColor;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
@@ -65,11 +64,17 @@ public class ColorUtils {
      * @return                    Last color
      */
     public static String getLastColor(String untranslatedColor) {
+        if(untranslatedColor.length() == 0)
+            return null;
+
         String[] coloredSections = untranslatedColor.split("&");
         String lastColor = coloredSections[coloredSections.length - 1];
 
         if(lastColor.startsWith("#"))
             return lastColor.substring(0, 7);
+
+        if(lastColor.length() == 0)
+            return null;
 
         return lastColor.charAt(0) + "";
     }
