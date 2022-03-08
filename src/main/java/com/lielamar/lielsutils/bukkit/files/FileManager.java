@@ -236,8 +236,8 @@ public class FileManager {
                 this.configuration = YamlConfiguration.loadConfiguration(reader);
                 inputString.close();
                 reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
         }
 
@@ -370,6 +370,16 @@ public class FileManager {
         }
 
         /**
+         * Returns the config as string
+         *
+         * @return   String value of the config, including comments
+         */
+        private String getConfigAsString() {
+            String configString = this.configuration.saveToString();
+            return this.applyComments(configString);
+        }
+
+        /**
          * Saves the config:
          *   - Gets the config string from the YamlConfiguration object
          *   - Applies comments to the config string
@@ -383,19 +393,9 @@ public class FileManager {
                 writer.write(configString);
                 writer.flush();
                 writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch(IOException exception) {
+                exception.printStackTrace();
             }
-        }
-
-        /**
-         * Returns the config as string
-         *
-         * @return   String value of the config, including comments
-         */
-        private String getConfigAsString() {
-            String configString = this.configuration.saveToString();
-            return this.applyComments(configString);
         }
 
         /**
@@ -405,30 +405,32 @@ public class FileManager {
          * @return               Edited configuration string with comments set as normal comments
          */
         private String applyComments(String configString) {
-            String[] lines = configString.split("\n"); // Getting all of the lines
+            String[] lines = configString.split("\n"); // Getting all the lines
 
             StringBuilder configData = new StringBuilder();
 
-            // Appending all of the header comments
+            // Appending all the header comments
             for(String comment : header)
                 configData.append(comment).append("\n");
-
-            List<String> listOfComments;
 
             // Looping over all lines
             for(String line : lines) {
 
-                // If the line is a key we want to add it its comments
+                // If the line is a key we want to add its comments
                 if(line.contains(":")) {
                     String key = line.split(":")[0]; // Getting only the key (removing the value)
 
-                    // Appending all of the comments for this specific key
-                    listOfComments = this.comments.get(key);
+                    // Appending all the comments for this specific key
+                    List<String> listOfComments = this.comments.get(key);
 
                     if(listOfComments != null) {
-                        configData.append("\n");
-                        for(String comment : listOfComments)
+//                        configData.append("\n");
+
+                        for(String comment : listOfComments) {
+                            if(comment.equalsIgnoreCase("\n"))
+                                continue;
                             configData.append(comment).append("\n");
+                        }
                     }
                 }
 
