@@ -9,8 +9,9 @@ public class ArraysUtils {
             return new String[0];
 
         String[] placeholder = new String[arguments.length - 1];
+        for(int i = 0; i < placeholder.length; i++)
+            placeholder[i] = arguments[i+1];
 
-        System.arraycopy(arguments, 1, placeholder, 0, arguments.length);
         return placeholder;
     }
 }
