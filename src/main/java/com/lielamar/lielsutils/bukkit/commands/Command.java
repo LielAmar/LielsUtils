@@ -36,12 +36,21 @@ public abstract class Command {
     public final @NotNull String getCommandName() { return command; }
     public final @Nullable String getPermission() { return permission; }
 
+
     public final boolean hasPermission(@NotNull CommandSender cs) {
-        if(this.permission == null && this.checkPermissionCallback == null) return false;
+        if(this.permission == null && this.checkPermissionCallback == null)
+            return false;
 
         if(this.permission != null)
             return cs.hasPermission(this.permission);
 
         return this.checkPermissionCallback.hasPermission(cs);
+    }
+
+    public final void execute(CommandSender cs, @NotNull String[] args) {
+        if(this.hasPermission(cs))
+            this.runCommand(cs, args);
+        else
+            this.noPermissionEvent(cs);
     }
 }

@@ -12,6 +12,7 @@ public abstract class StandaloneCommand extends SuperCommand {
     }
     public StandaloneCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
 
+
     @Override
     public final void subCommandNotFoundEvent(@NotNull CommandSender cs) {}
 

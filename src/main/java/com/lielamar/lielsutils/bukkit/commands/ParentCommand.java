@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class MasterCommand extends CommandWithSubCommands {
+public abstract class ParentCommand extends CommandWithSubCommands {
 
-    public MasterCommand(@NotNull String name, @Nullable String permission) { super(name, permission); }
-    public MasterCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
+    public ParentCommand(@NotNull String name, @Nullable String permission) { super(name, permission); }
+    public ParentCommand(@NotNull String name, @Nullable CheckPermissionCallback checkPermissionCallback) { super(name, checkPermissionCallback); }
 
 
     public abstract boolean runMasterCommand(@NotNull CommandSender commandSender, @NotNull String[] args);

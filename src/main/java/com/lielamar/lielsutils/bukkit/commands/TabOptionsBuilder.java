@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 
 public class TabOptionsBuilder {
 
-    private List<Callable<List<String>>> argsF = new ArrayList<>();
+    private final List<Callable<List<String>>> argsF = new ArrayList<>();
+
 
     public TabOptionsBuilder range(int min, int max, int jump) {
         argsF.add(() -> {
@@ -27,12 +28,12 @@ public class TabOptionsBuilder {
         return this;
     }
 
-    public TabOptionsBuilder player() {
+    public TabOptionsBuilder players() {
         argsF.add(() -> Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName).collect(Collectors.toList()));
         return this;
     }
 
-    public TabOptionsBuilder playerOr(String... option) {
+    public TabOptionsBuilder playerAnd(String... option) {
         argsF.add(() -> {
             List<String> r = Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName).collect(Collectors.toList());
             r.addAll(Arrays.asList(option));
