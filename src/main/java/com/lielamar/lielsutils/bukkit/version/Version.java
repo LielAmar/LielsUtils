@@ -11,7 +11,7 @@ public class Version {
         try {
             this.serverVersion = ServerVersion.valueOf("v" + Bukkit.getServer().getBukkitVersion().split("-")[0].replaceAll("\\.", "_"));
             this.nmsVersion = NMSVersion.valueOf(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception ignored) {}
     }
 
 

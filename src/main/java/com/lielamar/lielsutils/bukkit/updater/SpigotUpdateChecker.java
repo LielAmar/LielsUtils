@@ -59,6 +59,8 @@ public class SpigotUpdateChecker implements Listener {
             if(versionsBehind == 0)
                 versionsBehind += Integer.parseInt(spigotVersion.split("\\.")[2])-Integer.parseInt(currentVersion.split("\\.")[2]);
 
+            if(versionsBehind < 0) return;
+
             sendUpdateMessage(Bukkit.getServer().getConsoleSender());
 
             for(Player pl : Bukkit.getOnlinePlayers())
