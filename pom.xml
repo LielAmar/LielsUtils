@@ -42,8 +42,8 @@
 
     <repositories>
         <repository>
-            <id>lielamar-api</id>
-            <url>https://api.lielamar.com/repository/maven-public/</url>
+            <id>lielamar-repo</id>
+            <url>https://repo.lielamar.com/repository/maven-public/</url>
         </repository>
 
         <repository>
@@ -85,7 +85,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.lielamar.ConnectionsManager</groupId>
+            <groupId>com.lielamar.connectionsmanager</groupId>
             <artifactId>common</artifactId>
             <version>1.0.7</version>
             <scope>compile</scope>
