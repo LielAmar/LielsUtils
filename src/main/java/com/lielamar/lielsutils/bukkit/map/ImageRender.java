@@ -24,6 +24,10 @@ public class ImageRender extends MapRenderer {
         this.cacheImage = new SoftReference<>(this.getImage(url));
     }
 
+    public ImageRender(BufferedImage bufferedImage) throws IOException {
+        this.cacheImage = new SoftReference<>(resize(bufferedImage, new Dimension(128, 128)));
+    }
+
     @Override
     public void render(@NotNull MapView view, @NotNull MapCanvas canvas, @NotNull Player player) {
         if(this.hasRendered) return;
@@ -42,14 +46,14 @@ public class ImageRender extends MapRenderer {
         boolean useCache = ImageIO.getUseCache();
         ImageIO.setUseCache(false);
 
-        BufferedImage image = resize(new URL(url), new Dimension(128, 128));
+        final BufferedImage originalImage = ImageIO.read(new URL(url).openStream());
+        BufferedImage image = resize(originalImage, new Dimension(128, 128));
 
         ImageIO.setUseCache(useCache);
         return image;
     }
 
-    private BufferedImage resize(final URL url, final Dimension size) throws IOException {
-        final BufferedImage image = ImageIO.read(url.openStream());
+    private BufferedImage resize(final BufferedImage image, final Dimension size) throws IOException {
         final BufferedImage resized = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = resized.createGraphics();
 
